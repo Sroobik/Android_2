@@ -1,4 +1,4 @@
-package com.example.android_2.ui.home
+package com.example.android_2.ui.main.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,4 +10,8 @@ class HomeViewModel : ViewModel() {
         value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
+
+    fun setName(text: String){
+        _text.postValue(text)
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.android_2.ui.common.extension
+package com.example.android_2.ui.main.common.extension
 
 import android.view.LayoutInflater
 import android.view.View

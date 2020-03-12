@@ -1,4 +1,4 @@
-package com.example.android_2.ui.notifications
+package com.example.android_2.ui.main.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
