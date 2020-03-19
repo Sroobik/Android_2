@@ -8,9 +8,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android_2.R
+import com.example.android_2.data.SharedPreferences
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
+    lateinit var myPref: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,12 +21,22 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.navigation_home,
-            R.id.navigation_dashboard,
-            R.id.navigation_notifications
-        ))
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_notifications
+            )
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        myPref = SharedPreferences(this)
+
+        val openCount = myPref.getAppOpenCount() + 1
+        myPref.setAppOpenCount(openCount)
+        myPref.lastOpenTime = Calendar.getInstance().timeInMillis
     }
+
 }

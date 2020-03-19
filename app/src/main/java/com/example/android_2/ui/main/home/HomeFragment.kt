@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.*
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -13,11 +12,27 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.android_2.R
 import com.example.android_2.SecondActivity
+import com.example.android_2.data.SharedPreferences
+import com.example.android_2.databinding.FragmentHomeBinding
+import com.example.android_2.utils.getCompleteDate
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
 
+    private lateinit var binding: FragmentHomeBinding
+
+    private lateinit var myPref: SharedPreferences
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        context?.let {
+            myPref = SharedPreferences(it)
+        }
+
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,14 +41,17 @@ class HomeFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+            binding.textHome.text = it
         })
-        return root
+
+        binding.openCount.text = myPref.getAppOpenCount().toString()
+
+        binding.lastCloseTime.text = myPref.lastOpenTime.getCompleteDate()
+        return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
