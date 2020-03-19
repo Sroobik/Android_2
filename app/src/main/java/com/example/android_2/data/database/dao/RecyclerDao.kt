@@ -8,6 +8,7 @@ import com.example.android_2.model.RecyclerItemData
 
 @Dao
 interface RecyclerDao {
+
     @Query("SELECT * from recycler_table")
     fun getAllItem(): List<RecyclerItemData>
 

@@ -7,6 +7,7 @@ import com.example.android_2.model.RecyclerItemData
 
 class RecyclerRepository(context: Context) {
     val recyclerDao = MyDatabase.getDatabase(context).recyclerDao()
+
     fun addNewItem(item: RecyclerItemData){
         recyclerDao.insert(item)
     }

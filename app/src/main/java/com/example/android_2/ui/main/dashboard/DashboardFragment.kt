@@ -42,7 +42,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
 
         binding.addNew.setOnClickListener {
-            val new = RecyclerItemData(0,"testaa", "Dlhy text")
+            val new = RecyclerItemData(0,"testaa", "Dlhy text", true)
             repository.addNewItem(new)
             adapter.addItem(new)
         }

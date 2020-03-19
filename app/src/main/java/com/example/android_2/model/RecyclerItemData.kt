@@ -8,4 +8,4 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "recycler_table")
-data class RecyclerItemData(@PrimaryKey(autoGenerate = true) val id: Int, @ColumnInfo val title: String,  @ColumnInfo val content: String): Parcelable
+data class RecyclerItemData(@PrimaryKey(autoGenerate = true) val id: Int, @ColumnInfo val title: String,  @ColumnInfo val content: String, @ColumnInfo val back: Boolean): Parcelable
