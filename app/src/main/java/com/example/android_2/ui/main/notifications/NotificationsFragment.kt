@@ -43,7 +43,7 @@ class NotificationsFragment : Fragment() {
         binding.retrofitRecycler.layoutManager = linearLayoutManager
 
 
-        Retrofit().myApiJson.getAllPosts().enqueue(object : Callback<List<Post>> {
+        Retrofit(context!!).myApiJson.getAllPosts().enqueue(object : Callback<List<Post>> {
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
                 Toast.makeText(context, "Erooooor", Toast.LENGTH_LONG).show()
             }
